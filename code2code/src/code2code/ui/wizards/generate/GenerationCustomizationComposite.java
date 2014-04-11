@@ -58,7 +58,7 @@ public class GenerationCustomizationComposite extends Composite {
 		Composite container = new Composite(scroll, SWT.NONE);
 		
 		GridLayout layout = new GridLayout();
-		layout.numColumns = 3;
+		layout.numColumns = 4;
 		container.setLayout(layout);
 		
 		
@@ -136,6 +136,22 @@ public class GenerationCustomizationComposite extends Composite {
 					
 				}
 			});
+			
+			Button overwritecheckbox = new Button(container, SWT.CHECK);
+			overwritecheckbox.setSelection(false);
+			overwritecheckbox.addSelectionListener(new SelectionAdapter(){
+				@Override
+				public void widgetSelected(SelectionEvent event) {
+					try {
+						result.setOverwriteAllowed(((Button)event.widget).getSelection());
+					} catch (Exception e) {
+						EclipseGuiUtils.showErrorDialog(GenerationCustomizationComposite.this.getShell(), e);
+						throw new RuntimeException(e);
+					}
+				}
+			});
+			overwritecheckbox.setText("overwrite?");
+			overwritecheckbox.setToolTipText("Allow to overwrite if file exists soon");
 			
 		}
 

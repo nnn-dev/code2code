@@ -11,6 +11,7 @@ import code2code.core.templateengine.TemplateEngineFactory;
 public class Template {
 
 	private boolean selectedToGenerate = true;
+	private boolean overwriteAllowed = false;
 	private String userChoosenResult;
 	private String userChoosenDestination;
 	private final String templateName;
@@ -61,6 +62,14 @@ public class Template {
 
 	public void setSelectedToGenerate(boolean selectedToGenerate) {
 		this.selectedToGenerate = selectedToGenerate;
+	}
+	
+	public boolean isOverwriteAllowed() {
+		return overwriteAllowed;
+	}
+	
+	public void setOverwriteAllowed(boolean overwriteAllowed) {
+		this.overwriteAllowed=overwriteAllowed;
 	}
 	
 	public void setUserChoosenResult(String userChoosenResult) {

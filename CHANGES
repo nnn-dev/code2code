@@ -1,3 +1,8 @@
+[nnn] 0.10.0
+
+allow overwrite
+add save/load parameters
+
 0.9.2
 
 better handling no generators found

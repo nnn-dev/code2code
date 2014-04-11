@@ -1,11 +1,14 @@
 
 # What it is
 
-code2code is an eclipse plugin to generate source code from templates.
+(nnn.)code2code is an eclipse plugin to generate source code from templates.
 
 You can easily create your custom generators using known template engines: Groovy (JSP like), Freemarker or Velocity.
 
 See it in action  [here](http://elsethenif.wordpress.com/2009/06/12/quickly-cruding-with-code2code-plugin-and-vraptor2/).
+
+Note: 
+nnn.code2code is a fork of [code2code](https://github.com/srizzo/code2code) with extra features (save/load parameters, allow overwride)
 
 # Creating a Generator
 
@@ -45,21 +48,21 @@ See it in action here: [Quickly cruding with code2code plugin and VRaptor2](http
 
 # Installation
 
-Current version is 0.9.2 beta, tested against Eclipse Ganymede 3.4.2.
+Current version is 0.10.0, tested against Eclipse Kepler SR1.
 
-You can install it from the [Update Site](http://srizzo.github.com/code2code/updatesite)
+You can install it from the [Update Site](http://nnn-dev.github.com/code2code/updatesite)
 
 
 # Documentation
 
-[http://wiki.github.com/srizzo/code2code](http://wiki.github.com/srizzo/code2code)
+[http://wiki.github.com/nnn-dev/code2code](http://wiki.github.com/nnn-dev/code2code)
 
 
 # Issues/Features
 
-[http://github.com/srizzo/code2code/issues](http://github.com/srizzo/code2code/issues)
+[http://github.com/nnn-dev/code2code/issues](http://github.com/nnn-dev/code2code/issues)
 
 
 # Generator Examples
 
-[http://github.com/srizzo/code2code-example-generators/downloads](http://github.com/srizzo/code2code-example-generators/downloads)
+[http://github.com/nnn-dev/code2code-example-generators/downloads](http://github.com/nnn-dev/code2code-example-generators/downloads)
