@@ -1,8 +1,8 @@
 ---
 layout: default
-title: code2code
+title: nnn.code2code
 ---
 
-# code2code - eclipse plugin
+# nnn.code2code - eclipse plugin
 	
-welcome to the [code2code](http://github.com/srizzo/code2code) plugin homepage
+welcome to the [nnn.code2code](http://github.com/nnn-dev/code2code) plugin homepage
