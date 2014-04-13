@@ -27,6 +27,7 @@ import code2code.utils.EclipseGuiUtils;
 
 public class GeneratorParametersPage extends WizardPage {
 
+	private static final String TOOLTIP = "tooltip=";
 	private Composite container;
 	private Composite paramsContainer;
 	List<Text> paramsTexts;
@@ -203,7 +204,17 @@ public class GeneratorParametersPage extends WizardPage {
 			Text text = new Text(paramsContainer, SWT.BORDER | SWT.MULTI);
 
 			text.setData("paramName", paramName);
-			text.setText(entry.getValue());
+			
+			String value=entry.getValue();
+			if (value!=null&&value.startsWith(TOOLTIP)){
+				int p=value.indexOf("=", TOOLTIP.length()+1);
+				final String description =value.substring(TOOLTIP.length(),p);
+				text.setToolTipText(description);
+				text.setToolTipText(String.format("%s (%s):",paramName,description));
+				value=value.substring(p+1);
+			}
+			text.setText(value);
+			
 
 			text.addModifyListener(new ModifyListener() {
 
