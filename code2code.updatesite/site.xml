@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/nnn.code2code_0.10.2.jar" id="nnn.code2code" version="0.10.2">
+   <feature url="features/nnn.code2code_0.10.3.jar" id="nnn.code2code" version="0.10.3">
       <category name="code2code"/>
    </feature>
    <category-def name="code2code" label="code2code"/>
