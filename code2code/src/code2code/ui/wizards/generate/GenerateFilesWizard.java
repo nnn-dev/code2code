@@ -1,5 +1,8 @@
 package code2code.ui.wizards.generate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -43,6 +46,7 @@ public class GenerateFilesWizard extends Wizard implements INewWizard {
 			IProject project = selectedGenerator.getGeneratorFolder()
 					.getProject();
 
+			List<IFile> projectfiles = new ArrayList<IFile>();
 			for (Template template : selectedGenerator
 					.calculateChoosenTemplatesToGenerate()) {
 
@@ -56,8 +60,12 @@ public class GenerateFilesWizard extends Wizard implements INewWizard {
 					Console.write("-------------------------------------------------------------");
 				} else {
 					Path destinationPath = new Path(destination);
+
+					IFile file = project.getFile(destinationPath);
+
 					if (project.exists(destinationPath)) {
-						if (!template.isOverwriteAllowed()) {
+						if (!template.isOverwriteAllowed()
+								&& !projectfiles.contains(file)) {
 
 							Console.write("File already exists. Skipping: "
 									+ destinationPath);
@@ -72,17 +80,22 @@ public class GenerateFilesWizard extends Wizard implements INewWizard {
 					Console.write("Generating: " + template.getTemplateName()
 							+ " to " + destination);
 
-					IFile file = project.getFile(destinationPath);
-
 					IContainer parent = file.getParent();
 					while (parent != null) {
 						if (parent instanceof IProject) {
 							IProject p = (IProject) parent;
-							if (!p.exists()) {
+							boolean exists = p.exists();
+							if (!exists) {
 								p.create(null);
 							}
 							if (!p.isOpen()) {
 								p.open(null);
+							}
+							if (!exists) {
+								// we must indicate if .project must be
+								// overwrited
+								IFile f = p.getFile(".project");
+								projectfiles.add(f);
 							}
 						}
 						parent = parent.getParent();
