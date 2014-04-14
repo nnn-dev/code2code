@@ -35,7 +35,7 @@ public class GeneratorParametersPage extends WizardPage {
 	private Generator selectedGenerator;
 
 	public GeneratorParametersPage(GeneratorSelectionPage generatorSelectionPage) {
-		super("Generator Parameters", "Configure Params", null);
+		super("Generator Parameters (0.10.2)", "Configure Params", null);
 		this.generatorSelectionPage = generatorSelectionPage;
 		setPageComplete(false);
 	}

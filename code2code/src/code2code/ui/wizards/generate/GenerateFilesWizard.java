@@ -1,5 +1,6 @@
 package code2code.ui.wizards.generate;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -73,6 +74,19 @@ public class GenerateFilesWizard extends Wizard implements INewWizard {
 
 					IFile file = project.getFile(destinationPath);
 
+					IContainer parent = file.getParent();
+					while (parent != null) {
+						if (parent instanceof IProject) {
+							IProject p = (IProject) parent;
+							if (!p.exists()) {
+								p.create(null);
+							}
+							if (!p.isOpen()) {
+								p.open(null);
+							}
+						}
+						parent = parent.getParent();
+					}
 					FileUtils.createParentFolders(file);
 
 					if (file.exists()) {
