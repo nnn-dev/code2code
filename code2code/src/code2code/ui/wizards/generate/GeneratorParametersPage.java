@@ -35,7 +35,7 @@ public class GeneratorParametersPage extends WizardPage {
 	private Generator selectedGenerator;
 
 	public GeneratorParametersPage(GeneratorSelectionPage generatorSelectionPage) {
-		super("Generator Parameters (0.10.2)", "Configure Params", null);
+		super("Generator Parameters", "Configure Params", null);
 		this.generatorSelectionPage = generatorSelectionPage;
 		setPageComplete(false);
 	}
@@ -111,6 +111,9 @@ public class GeneratorParametersPage extends WizardPage {
 
 		if (params.size() > 0) {
 			createParamsTexts(params);
+			//regenerate value if tooltip used
+			getSelectedGenerator().setUserConfiguredParams(
+					createParamsMap());
 		} else {
 
 			Label label = new Label(paramsContainer, SWT.NONE);
