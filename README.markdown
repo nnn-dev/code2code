@@ -47,7 +47,7 @@ See it in action here: [Quickly cruding with code2code plugin and VRaptor2](http
 
 # Installation
 
-Current version is 0.10.3, tested against Eclipse Kepler SR1.
+Current version is 0.10.4, tested against Eclipse Kepler SR1.
 
 You can install it from the [Update Site](http://nnn-dev.github.com/code2code/updatesite)
 
