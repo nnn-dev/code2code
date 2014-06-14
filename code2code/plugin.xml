@@ -50,5 +50,36 @@
          </action>
       </objectContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="code2code.preferences.PreferencePage"
+            id="code2code.preferences.PreferencePage"
+            name="nnn.code2code">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="code2code.preferences.PreferenceInitializer">
+      </initializer>
+      
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferenceTransfer">
+       <transfer
+            id="org.eclipse.jdt.internal.core.transfer.compiler"
+            icon="$nl$/icons/full/eview16/jperspective.gif"
+            name="nnn.code2code Preferences">
+            <mapping scope="instance">
+               <entry node="nnn.code2code">
+                  <key name="generatorsDirName" match="prefix"/>
+               </entry>
+            </mapping>
+            <description>
+				nnn.code2code preferences
+            </description>
+      </transfer>
+   </extension>
 
 </plugin>

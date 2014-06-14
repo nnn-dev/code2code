@@ -28,6 +28,7 @@ public class GenerateFilesWizard extends Wizard implements INewWizard {
 	private GeneratorParametersPage generatorParametersPage;
 	private IWorkbench workbench;
 	private GenerationCustomizationPage generationCustomizationPage;
+	private GenerationPostActionsPage generationPostActionsPage;
 
 	@Override
 	public boolean performFinish() {
@@ -156,10 +157,12 @@ public class GenerateFilesWizard extends Wizard implements INewWizard {
 				generatorSelectionPage);
 		generationCustomizationPage = new GenerationCustomizationPage(
 				generatorParametersPage);
+		generationPostActionsPage = new GenerationPostActionsPage(generatorParametersPage);
 
 		addPage(generatorSelectionPage);
 		addPage(generatorParametersPage);
 		addPage(generationCustomizationPage);
+		addPage(generationPostActionsPage);
 
 	}
 

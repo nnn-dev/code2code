@@ -13,7 +13,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.ui.PlatformUI;
 
+import code2code.Activator;
 import code2code.core.templateengine.TemplateEngineFactory;
+import code2code.preferences.PreferenceConstants;
 import code2code.utils.EclipseGuiUtils;
 
 
@@ -28,7 +30,9 @@ public class GeneratorFactory {
 			}
 		});
 		
-		IFolder defaultGeneratorsFolder = project.getFolder("generators");
+		//IFolder defaultGeneratorsFolder = project.getFolder("generators");
+		final String dirname = Activator.getDefault().getPreferenceStore().getString(PreferenceConstants.DIR_NAME);
+		IFolder defaultGeneratorsFolder = project.getFolder(dirname);
 		
 		if(!defaultGeneratorsFolder.exists()){
 			return new HashSet<Generator>();

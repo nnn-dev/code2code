@@ -18,8 +18,11 @@ public class Generator {
 	final private List<Generator> nestedGenerators;
 
 	final private List<Template> templates;
+	final private List<Template> launchers;
 
 	final private UserParams userParams;
+
+	private TemplatesConfig launchersConfig;
 
 	
 	private Generator(IFolder folder) throws Exception{
@@ -29,10 +32,14 @@ public class Generator {
 		descriptionConfig = new DescriptionConfig(this, globalParamsConfig);
 		paramsConfig = new ParamsConfig(this);
 		templatesConfig = new TemplatesConfig(this);
+		launchersConfig = new TemplatesConfig(this,"postactions");
 		
 		nestedGenerators = templatesConfig.getNestedGenerators();
 		
 		templates = calculateGeneratorTemplates();
+	
+		launchers = calculateGeneratorLaunchers();
+		
 		
 		userParams = new UserParams(this, globalParamsConfig, paramsConfig, nestedGenerators);
 		
@@ -54,6 +61,18 @@ public class Generator {
 		return templates;
 	}
 	
+	private List<Template> calculateGeneratorLaunchers() throws Exception {
+		
+		List<Template> templates = launchersConfig.getTemplates();
+		
+		for (Generator nestedGenerator : nestedGenerators) {
+			templates.addAll(nestedGenerator.calculateGeneratorLaunchers());
+		}
+
+		return templates;
+	}
+	
+	
 
 	public List<Template> calculateChoosenTemplatesToGenerate() throws Exception {
 		
@@ -64,6 +83,13 @@ public class Generator {
 				templatesToGenerate.add(template);
 			}
 		}
+		
+		for (Template template : launchers) {
+			if(template.isSelectedToGenerate()){
+				templatesToGenerate.add(template);
+			}
+		}
+		
 		
 		return templatesToGenerate;
 	}
@@ -101,5 +127,8 @@ public class Generator {
 		return templates;
 	}
 
+	public List<Template> getPostActions() {
+		return launchers;
+	}
 
 }
