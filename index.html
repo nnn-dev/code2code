@@ -51,13 +51,20 @@ nnn.code2code is a fork of <a href="https://github.com/srizzo/code2code">code2co
 <pre><code>HelloWorld.generator
   |-- templates
       |-- HelloWorldTemplate.txt.ftl
+      |-- ListParams.ftl
   |-- templates.ftl
+  |-- postactions.ftl
   |-- params.ftl
 </code></pre>
 
 <p>Contents of HelloWorldTemplate.txt.ftl:</p>
 
 <pre><code>Hello ${name}!!!
+</code></pre>
+
+<p>Contents of ListParams.ftl:</p>
+
+<pre><code>Print vars =&gt; name=${name}
 </code></pre>
 
 <p>Contents of params.ftl:</p>
@@ -70,19 +77,24 @@ nnn.code2code is a fork of <a href="https://github.com/srizzo/code2code">code2co
 <pre><code>templates/HelloWorldTemplate.txt.ftl=src/destinationPath/HelloWorld.txt
 </code></pre>
 
+<p>Contents of postactions.ftl</p>
+
+<pre><code>templates/ListParams.ftl
+</code></pre>
+
 <h1>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
 
 <p><strong>Installing generators:</strong> just create a folder named "generators" at the root of your project, and place your generators there.</p>
 
-<p><strong>Running generators</strong>: The plugin adds a “Generate…” option to your project context menu (right-click menu). Run it, choose one of your installed generators, set its parameters, and the plugin will generate the files to the right place.</p>
+<p><strong>Running generators</strong>: The plugin adds a " Generate... " option to your project context menu (right-click menu). Run it, choose one of your installed generators, set its parameters, and the plugin will generate the files to the right place.</p>
 
 <p>See it in action here: <a href="http://elsethenif.wordpress.com/2009/06/12/quickly-cruding-with-code2code-plugin-and-vraptor2/">Quickly cruding with code2code plugin and VRaptor2</a>.</p>
 
 <h1>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
 
-<p>Current version is 0.10.3, tested against Eclipse Kepler SR1.</p>
+<p>Current version is 0.10.5, tested against Eclipse Kepler SR1.</p>
 
 <p>You can install it from the <a href="http://nnn-dev.github.com/code2code/updatesite">Update Site</a></p>
 
