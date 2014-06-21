@@ -120,6 +120,12 @@ public class GeneratorParametersPage extends WizardPage {
 			label.setText("This Generator has no params to configure");
 
 		}
+		
+		Map<String,String> eclipseParams = generatorSelectionPage.getSelectedGenerator().calculateEclipseParams();
+		for(Map.Entry<String,String> p:eclipseParams.entrySet()){
+			new Label(paramsContainer,SWT.NONE).setText(p.getKey());
+			new Label(paramsContainer,SWT.NONE).setText(p.getValue());
+		}
 
 		Button load = new Button(paramsContainer, SWT.NONE);
 		load.setText("Load");

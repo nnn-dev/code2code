@@ -50,10 +50,15 @@ Contents of postactions.ftl
 
 See it in action here: [Quickly cruding with code2code plugin and VRaptor2](http://elsethenif.wordpress.com/2009/06/12/quickly-cruding-with-code2code-plugin-and-vraptor2/).
 
+Inner params:
+
+
+* eclipse_project_name : name of selected project
+* eclipse_project_path : path of selected project
 
 # Installation
 
-Current version is 0.10.5, tested against Eclipse Kepler SR1.
+Current version is 0.10.6, tested against Eclipse Kepler SR1.
 
 You can install it from the [Update Site](http://nnn-dev.github.com/code2code/updatesite)
 

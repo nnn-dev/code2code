@@ -62,6 +62,8 @@ class UserParams{
 			allRequiredParams.putAll(nestedGenerator.calculateRequiredParams());
 		}
 
+		allRequiredParams.putAll(generator.calculateEclipseParams());
+		
 		for (String key : paramsConfig.getParams().keySet()) {
 			allRequiredParams.remove(key);
 		}

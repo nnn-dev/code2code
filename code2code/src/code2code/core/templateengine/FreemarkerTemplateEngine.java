@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import code2code.core.generator.Generator;
-
 import freemarker.cache.FileTemplateLoader;
 import freemarker.cache.MultiTemplateLoader;
 import freemarker.cache.StringTemplateLoader;
