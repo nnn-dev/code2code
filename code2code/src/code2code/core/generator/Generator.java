@@ -116,7 +116,11 @@ public class Generator {
 	}
 
 	public Map<String, String> calculateContext() throws Exception {
-		return userParams.translated();
+		//3Zen
+		Map<String,String> result = new HashMap<String,String>();
+		result.putAll(calculateEclipseParams());
+		result.putAll(userParams.translated());
+		return result; //userParams.translated();
 	}
 
 	public void setUserConfiguredParams(Map<String, String> userConfiguredParams) {
