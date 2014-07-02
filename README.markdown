@@ -53,12 +53,14 @@ See it in action here: [Quickly cruding with code2code plugin and VRaptor2](http
 Inner params:
 
 
-* eclipse_project_name : name of selected project
-* eclipse_project_path : path of selected project
+* eclipse_project_name  : name of selected project
+* eclipse_project_path  : path of selected project
+* eclipse_plugin_name   : name of this plugin
+* eclipse_plugin_version : version of this plugin
 
 # Installation
 
-Current version is 0.10.6, tested against Eclipse Kepler SR1.
+Current version is 0.10.6, tested against Eclipse Kepler SR1 and Eclipse Luna.
 
 You can install it from the [Update Site](http://nnn-dev.github.com/code2code/updatesite)
 

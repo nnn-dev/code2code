@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -11,6 +12,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 public class Generator {
 
@@ -137,22 +140,30 @@ public class Generator {
 
 	public Map<String, String> calculateEclipseParams() {
 		if (eclipseParams == null) {
-			eclipseParams = new HashMap<String, String>();
+			eclipseParams = new TreeMap<String, String>();
 			IProject eclipse = getCurrentEclipseProject();
+			Bundle bundle =  FrameworkUtil.getBundle(getClass());
+			final Map<String, String> params = (paramsConfig.getParams());
 			if (eclipse != null) {
-				final Map<String, String> params = (paramsConfig.getParams());
-				if (!params.containsKey("eclipse_project_name")) {
-					eclipseParams
-							.put("eclipse_project_name", eclipse.getName());
-				}
-				if (!params.containsKey("eclipse_project_location")) {
-					eclipseParams
-							.put("eclipse_project_path", eclipse.getLocation().toFile().getAbsolutePath());
-				}
-
+				setEclipseParam(params,"eclipse_project_name", eclipse.getName());
+				setEclipseParam(params,"eclipse_project_path", eclipse.getLocation().toFile().getAbsolutePath());
+			}
+			if (bundle!=null){
+				setEclipseParam(params,"eclipse_plugin_name", bundle.getSymbolicName());
+				setEclipseParam(params,"eclipse_plugin_version",bundle.getVersion().toString());
 			}
 		}
 		return eclipseParams;
+	}
+
+	private void setEclipseParam(
+			final Map<String, String> params,
+			String name,
+			String value) {
+		if (!params.containsKey(name)) {
+			eclipseParams
+					.put(name,value);
+		}
 	}
 
 	private IProject getCurrentEclipseProject() {
