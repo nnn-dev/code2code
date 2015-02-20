@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 
 import code2code.Activator;
@@ -47,30 +48,38 @@ public class GeneratorSelectionPage extends WizardPage {
 
 	public void createControl(Composite parent) {
 
-		ScrolledComposite scrolledComposite = new ScrolledComposite(parent,
-				SWT.H_SCROLL | SWT.V_SCROLL);
-		Composite container = new Composite(scrolledComposite, SWT.NONE);
-		scrolledComposite.setContent(container);
-
-		GridLayout layout = new GridLayout();
-		layout.numColumns = 1;
-		container.setLayout(layout);
-
+		Composite container = null;
+		ScrolledComposite scrolledComposite = null;
+		
 		Set<Generator> generators;
 		try {
 			generators = GeneratorFactory.fromProject(project);
 		} catch (Exception e1) {
-			EclipseGuiUtils.showErrorDialog(container.getShell(), e1);
+			EclipseGuiUtils.showErrorDialog(parent.getShell(), e1);
 			throw new RuntimeException(e1);
 		}
 
 		if (generators.isEmpty()) {
+			scrolledComposite = new ScrolledComposite(parent,
+					SWT.H_SCROLL | SWT.V_SCROLL);
+			container = new Composite(scrolledComposite, SWT.NONE);
+			scrolledComposite.setContent(container);
+
+			GridLayout layout = new GridLayout();
+			layout.numColumns = 1;
+			container.setLayout(layout);
 			Label label = new Label(container, SWT.NONE);
 			label.setText("No generators found.");
-		}
+		} else
 
 		if ("tree".equals(Activator.getDefault().getPreferenceStore()
 				.getString(PreferenceConstants.GUI_STYLE))) {
+			container = new Composite(parent, SWT.NONE);
+
+			GridLayout layout = new GridLayout();
+			layout.numColumns = 1;
+			container.setLayout(layout);
+
 			final Map<String, TreeItem> generatorItems = new HashMap<String, TreeItem>();
 			final Tree tree = new Tree(container, SWT.BORDER | SWT.V_SCROLL
 					| SWT.H_SCROLL);
@@ -84,20 +93,29 @@ public class GeneratorSelectionPage extends WizardPage {
 					}
 				}
 			});
-
+			tree.setHeaderVisible(true);
+			TreeColumn column1 = new TreeColumn(tree, SWT.CENTER);
+			column1.setText("Generator");
+			column1.setWidth(300);
+			
+			TreeColumn column2 = new TreeColumn(tree, SWT.RIGHT);
+			column2.setText("Description");
+			column2.setWidth(500);
+			
 			for (Generator generator : generators) {
 				TreeItem tparent = null;
 				String name = generator.getName();
 				String[] namep = name.split(Pattern.quote("/"));
 				for (int i = 0; i < namep.length - 1; i++) {
-					if (generatorItems.containsKey(namep)) {
-						tparent = generatorItems.get(namep);
+					String nameps = namep[i];
+					if (generatorItems.containsKey(nameps)) {
+						tparent = generatorItems.get(nameps);
 					} else {
-						tparent = createTreeItem(tree, tparent, namep[i]);
-						generatorItems.put(name, tparent);
+						tparent = createTreeItem(tree, tparent, nameps,"");
+						generatorItems.put(nameps, tparent);
 					}
 				}
-				TreeItem item = createTreeItem(tree, tparent, name);
+				TreeItem item = createTreeItem(tree, tparent, namep[namep.length-1],generator.getDescription());
 				item.setData("generator", generator);
 				generatorItems.put(name, item);
 				if (tparent != null) {
@@ -105,6 +123,15 @@ public class GeneratorSelectionPage extends WizardPage {
 				}
 			}
 		} else {
+			scrolledComposite = new ScrolledComposite(parent,
+					SWT.H_SCROLL | SWT.V_SCROLL);
+			container = new Composite(scrolledComposite, SWT.NONE);
+			scrolledComposite.setContent(container);
+
+			GridLayout layout = new GridLayout();
+			layout.numColumns = 1;
+			container.setLayout(layout);
+
 			final List<Button> generatorButtons = new ArrayList<Button>();
 
 			for (Generator generator : generators) {
@@ -128,17 +155,21 @@ public class GeneratorSelectionPage extends WizardPage {
 		}
 		container.setSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
-		setControl(scrolledComposite);
+		if (scrolledComposite != null) {
+			setControl(scrolledComposite);
+		} else {
+			setControl(container);
+		}
 	}
 
-	private TreeItem createTreeItem(Tree t, TreeItem tparent, String name) {
+	private TreeItem createTreeItem(Tree t, TreeItem tparent, String name, String description) {
 		TreeItem res;
 		if (tparent == null) {
 			res = new TreeItem(t, 0);
 		} else {
 			res = new TreeItem(tparent, 0);
 		}
-		res.setText(name);
+		res.setText(new String[]{name,description});
 		return res;
 	}
 
