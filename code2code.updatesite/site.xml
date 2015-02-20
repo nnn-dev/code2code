@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description name="Update Site" url="http://nnn-dev.github.com/code2code/updatesite">
-      Update Site
-   </description>
-   <feature url="features/nnn.code2code_0.10.6.2.jar" id="nnn.code2code" version="0.10.6.2">
+   <feature url="features/nnn.code2code_0.10.7.jar" id="nnn.code2code" version="0.10.7">
       <category name="code2code"/>
    </feature>
    <category-def name="code2code" label="code2code"/>
