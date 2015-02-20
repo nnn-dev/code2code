@@ -118,6 +118,8 @@ public class GeneratorParametersPage extends WizardPage {
 
 			Label label = new Label(paramsContainer, SWT.NONE);
 			label.setText("This Generator has no params to configure");
+			Label label2 = new Label(paramsContainer, SWT.NONE);
+			label2.setText(".");
 
 		}
 		

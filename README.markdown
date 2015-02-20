@@ -60,7 +60,7 @@ Inner params:
 
 # Installation
 
-Current version is 0.10.6, tested against Eclipse Kepler SR1 and Eclipse Luna.
+Current version is 0.10.7, tested against Eclipse Kepler SR2.
 
 You can install it from the [Update Site](http://nnn-dev.github.com/code2code/updatesite)
 

@@ -11,7 +11,7 @@
             category="code2code.category"
             class="code2code.ui.wizards.generate.GenerateFilesWizard"
             id="code2code.newWizard"
-            name="File(s) from Template">
+            name="%wizard.name">
       </wizard>
    </extension>
    <extension
@@ -33,7 +33,7 @@
                class="code2code.popupmenu.GenerateAction"
                enablesFor="1"
                id="code2code.generateAction"
-               label="Generate..."
+               label="%action.generate"
                menubarPath="code2code">
          </action>
       </objectContribution>
@@ -45,7 +45,7 @@
                class="code2code.popupmenu.CreateGeneratorAction"
                enablesFor="*"
                id="code2code.createGeneratorAction"
-               label="Create generator from selected files..."
+               label="%action.creategenerator"
                menubarPath="code2code">
          </action>
       </objectContribution>
@@ -55,7 +55,7 @@
       <page
             class="code2code.preferences.PreferencePage"
             id="code2code.preferences.PreferencePage"
-            name="nnn.code2code">
+            name="%page.name">
       </page>
    </extension>
    <extension
@@ -70,16 +70,15 @@
        <transfer
             id="org.eclipse.jdt.internal.core.transfer.compiler"
             icon="$nl$/icons/full/eview16/jperspective.gif"
-            name="nnn.code2code Preferences">
+            name="%transfer.name">
             <mapping scope="instance">
                <entry node="nnn.code2code">
                   <key name="generatorsDirName" match="prefix"/>
                </entry>
             </mapping>
             <description>
-				nnn.code2code preferences
+				%transfer.description
             </description>
       </transfer>
    </extension>
-
-</plugin>
+   </plugin>
